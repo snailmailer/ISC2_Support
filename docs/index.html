@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIST Support Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+        <div>
+            <h1>Support Portal</h1>
+            <p style="color: hsl(var(--text-secondary));">Submit your incident or access request securely.</p>
+        </div>
+        <a href="dashboard.html" class="btn btn-secondary">Admin Dashboard</a>
+    </header>
+
+    <div class="card glass" style="max-width: 700px; margin: 0 auto;">
+        <h2>New Ticket</h2>
+        <form id="ticketForm">
+            <div class="form-group">
+                <label for="userName">Requester Name</label>
+                <input type="text" id="userName" name="user_name" placeholder="John Doe" required>
+            </div>
+
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="Access Request">Access Request</option>
+                        <option value="Incident Report">Incident Report</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select id="priority" name="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="issueType">Issue Type</label>
+                <input type="text" id="issueType" name="issue_type" placeholder="e.g. Password Reset, System Down" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description (What is the issue?)</label>
+                <textarea id="description" name="description" rows="4" placeholder="Describe the problem in detail..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="context">Context (How did it happen?)</label>
+                <textarea id="context" name="context" rows="3" placeholder="Steps to reproduce or events leading up to this..."></textarea>
+            </div>
+
+            <div style="text-align: right;">
+                <button type="submit" class="btn">Submit Ticket</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Success Modal/Message Overlay -->
+    <div id="successMessage" class="card glass hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 100;">
+        <h2 style="color: hsl(var(--status-resolved))">Ticket Submitted!</h2>
+        <p>Your ticket ID is: <strong id="newTicketId" style="color: hsl(var(--accent-color))"></strong></p>
+        <p>Reference this ID in all future communications.</p>
+        <button class="btn btn-secondary" onclick="window.location.reload()">Close</button>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

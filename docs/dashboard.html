@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NIST Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p style="color: hsl(var(--text-secondary));">Oversee and manage incident response.</p>
+            </div>
+            <a href="index.html" class="btn btn-secondary">Submit New Ticket</a>
+        </header>
+
+        <div class="grid" style="grid-template-columns: 1fr 3fr;">
+            <!-- Sidebar Controls -->
+            <aside>
+                <div class="card glass">
+                    <h3>Filters</h3>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="statusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Resolved">Resolved</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="priorityFilter">
+                            <option value="all">All Priorities</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Critical">Critical</option>
+                        </select>
+                    </div>
+                    <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="applyFilters()">Apply
+                        Filters</button>
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="exportCSV()">Export CSV</button>
+                </div>
+
+                <div class="card glass" style="margin-top: 20px;">
+                    <h3>Stats</h3>
+                    <div style="font-size: 2rem; font-weight: 700; color: hsl(var(--status-open));">12</div>
+                    <div style="font-size: 0.9rem; color: hsl(var(--text-secondary));">Open Tickets</div>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+                    <div style="font-size: 2rem; font-weight: 700; color: hsl(var(--status-resolved));">45</div>
+                    <div style="font-size: 0.9rem; color: hsl(var(--text-secondary));">Resolved This Week</div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main>
+                <div class="card glass">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <h2>Recent Tickets</h2>
+                        <button class="btn btn-secondary" onclick="fetchTickets()">Refresh</button>
+                    </div>
+                    <ul id="ticketList" class="ticket-list">
+                        <!-- Tickets will be populated here by app.js -->
+                        <li style="padding: 20px; text-align: center;">Loading tickets...</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
